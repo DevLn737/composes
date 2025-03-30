@@ -1,0 +1,21 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Samara
+      - WEBUI_PORT=3000
+      - TORRENTING_PORT=50010
+    volumes:
+      - /path/to/config/dir:/config
+      - /path/to/downloads/dir:/downloads 
+      - /path/to/movies/dir:/movies 
+      - /path/to/tvshows/dir:/tvshows 
+      - /path/to/vuetorrent/dir:/vuetorrent # if necessary
+    ports:
+      - 3000:3000
+      - 50010:50010
+      - 50010:50010/udp
+    restart: unless-stopped
